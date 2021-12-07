@@ -6,16 +6,16 @@
 <!-- Header -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
   <div class="container">
-    <a class="navbar-brand" href="#">MDV</a>
+    <a class="navbar-brand" href="#">Projet Symfony Adrien/Mathieu/Clément</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/contact">Contact</a>
+          <a class="nav-link" href="{{ path('contact') }}">Contact</a>
         </li>
-          <a class="nav-link" href="/connexion">Connexion</a>
+          <a class="nav-link" href="{{ path('connexion') }}">Connexion</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Administration</a>
