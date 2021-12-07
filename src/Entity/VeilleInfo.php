@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ArticleRepository;
+use App\Repository\VeilleInfoRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=ArticleRepository::class)
+ * @ORM\Entity(repositoryClass=VeilleInfoRepository::class)
  */
-class Article
+class VeilleInfo
 {
     /**
      * @ORM\Id
@@ -30,7 +30,7 @@ class Article
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $image;
+    private $lien;
 
     public function getId(): ?int
     {
@@ -61,14 +61,14 @@ class Article
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getLien(): ?string
     {
-        return $this->image;
+        return $this->lien;
     }
 
-    public function setImage(string $image): self
+    public function setLien(string $lien): self
     {
-        $this->image = $image;
+        $this->lien = $lien;
 
         return $this;
     }
