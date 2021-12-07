@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+{% block body %}
+{% block stylesheets %}
+        <link href="{{ asset('contact/css/main.css') }}" type="text/css" rel="stylesheet" />
+        <link href="{{ asset('contact/css/util.css') }}" type="text/css" rel="stylesheet" />
+        
+    {% endblock %}
+<div class="container-contact2">
+    <div class="wrap-contact2">
+        <form class="contact2-form validate-form">
+            <span class="contact2-form-title">
+						Contact Us
+					</span>
+
+					<div class="wrap-input2 validate-input" data-validate="Mettre un Nom !">
+						{{ form_widget(form.nom, {'attr': {'class': 'input2'}}) }}
+						<span class="focus-input2" data-placeholder="NOM"></span>
+					</div>
+
+					<div class="wrap-input2 validate-input" data-validate = "Mettre un email valide: ex@abc.xyz">
+						{{ form_widget(form.email, {'attr': {'class': 'input2'}}) }} 
+						<span class="focus-input2" data-placeholder="EMAIL"></span>
+					</div>
+
+					<div class="wrap-input2 validate-input" data-validate = "Veuillez mettre un message !">
+						{{ form_widget(form.message, {'attr': {'class': 'input2'}}) }}
+						<span class="focus-input2" data-placeholder="MESSAGE"></span>
+					</div>
+
+					<div class="container-contact2-form-btn">
+						<div class="wrap-contact2-form-btn">
+							<div class="contact2-form-bgbtn"></div>
+							<button class="contact2-form-btn">
+								Send Your Message
+							</button>
+						</div>
+					</div>
+        </form>
+</div>
+<script src="js/main.js"></script>
+
+</div>
+{% endblock %}
+
+    {# {{ form_widget(form.email, {'attr': {'class': 'input2'}}) }} #}
