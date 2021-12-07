@@ -1,24 +1,24 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Hello ArticleController!{% endblock %}
+{% block title %}Veille Informatique{% endblock %}
 
 {% block body %}
- <h1>Article index</h1>
+ <h1>Veille Informatique index</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Titre</th>
                 <th>Description</th>
-                <th>Image</th>
+                <th>Lien</th>
             </tr>
         </thead>
         <tbody>
-        {% for article in articles %}
+        {% for veilleinfo in veilleinfos %}
             <tr>
-                <td>{{ article.titre }}</td>
-                <td>{{ article.description }}</td>
-                <td>{{ article.image }}</td>
+                <td>{{ veilleinfo.titre }}</td>
+                <td>{{ veilleinfo.description }}</td>
+                <td>{{ veilleinfo.lien }}</td>
                 {% else %}
             <tr>
                 <td colspan="8">no records found</td>
