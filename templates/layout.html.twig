@@ -13,13 +13,22 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" href="{{ path("app_admin") }}">Administration</a>
-          <a class="nav-link" href="/contact">Contact</a>           
-        </li>
-          {% if is_granted('ROLE_USER')  %}
+         {% if is_granted('ROLE_ADMIN')  %}
+          <a class="nav-link" href="{{ path("app_admin") }}">Administration</a>{% endif %} 
+          </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a> 
+          </li>
+          <li class="nav-item">        
+          <a class="nav-link" href="/veilleinfo">Veille Info</a>  
+          </li>
+          <li class="nav-item">
+               {% if is_granted('ROLE_USER')  %}
               <a class="nav-link" href="{{ logout_url() }}">Déconnexion</a>
-              <p class="text-white">Connecté en tant que : {{app.user.username}}</p> 
-          {% else %} <a class="nav-link" href="{{ path("connexion") }}">Connexion</a>{% endif %}              
+              <p class="text-white">Connecté en tant que : {{app.user.pseudo}}</p> 
+          {% else %} <a class="nav-link" href="{{ path("connexion") }}">Connexion</a>{% endif %}       
+        </li>
+       
         </li>
       </ul>
     </div>
