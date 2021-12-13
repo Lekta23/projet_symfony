@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -51,6 +53,22 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $prenom;
+
+    /**
+     * @ORM\OneToMany(targetEntity=VeilleInfo::class, mappedBy="auteur")
+     */
+    private $veilleInfos;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Voter::class, mappedBy="user")
+     */
+    private $voters;
+
+    public function __construct()
+    {
+        $this->veilleInfos = new ArrayCollection();
+        $this->voters = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -170,6 +188,66 @@ class User implements UserInterface
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|VeilleInfo[]
+     */
+    public function getVeilleInfos(): Collection
+    {
+        return $this->veilleInfos;
+    }
+
+    public function addVeilleInfo(VeilleInfo $veilleInfo): self
+    {
+        if (!$this->veilleInfos->contains($veilleInfo)) {
+            $this->veilleInfos[] = $veilleInfo;
+            $veilleInfo->setAuteur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVeilleInfo(VeilleInfo $veilleInfo): self
+    {
+        if ($this->veilleInfos->removeElement($veilleInfo)) {
+            // set the owning side to null (unless already changed)
+            if ($veilleInfo->getAuteur() === $this) {
+                $veilleInfo->setAuteur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Voter[]
+     */
+    public function getVoters(): Collection
+    {
+        return $this->voters;
+    }
+
+    public function addVoter(Voter $voter): self
+    {
+        if (!$this->voters->contains($voter)) {
+            $this->voters[] = $voter;
+            $voter->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVoter(Voter $voter): self
+    {
+        if ($this->voters->removeElement($voter)) {
+            // set the owning side to null (unless already changed)
+            if ($voter->getUser() === $this) {
+                $voter->setUser(null);
+            }
+        }
 
         return $this;
     }
