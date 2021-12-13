@@ -1,9 +1,8 @@
-{% extends 'layout.html.twig' %}
+{% extends 'layoutAdmin.html.twig' %}
 
 {% block title %}Hello ArticleController!{% endblock %}
 
 {% block body %}
- <h1>Article index - ADMIN</h1>
 
     <table class="table">
         <thead>
@@ -21,8 +20,7 @@
                 <td>{{ article.image }}</td>
 
                 
-                <a href="{{ path('article_crud_show', {'id': article.id}) }}">show</a>
-                <a href="{{ path('article_crud_edit', {'id': article.id}) }}">edit</a>
+             
                 {% else %}
             <tr>
                 <td colspan="8">no records found</td>
