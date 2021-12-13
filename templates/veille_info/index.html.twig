@@ -1,29 +1,41 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Veille Informatique{% endblock %}
+{% block title %}VeilleInfo index{% endblock %}
 
 {% block body %}
- <h1>Veille Informatique index</h1>
+    <h1>VeilleInfo index</h1>
 
     <table class="table">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Titre</th>
                 <th>Description</th>
                 <th>Lien</th>
+                <th>Note</th>
+                <th>actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for veilleinfo in veilleinfos %}
+        {% for veille_info in veille_infos %}
             <tr>
-                <td>{{ veilleinfo.titre }}</td>
-                <td>{{ veilleinfo.description }}</td>
-                <td>{{ veilleinfo.lien }}</td>
-                {% else %}
+                <td>{{ veille_info.id }}</td>
+                <td>{{ veille_info.titre }}</td>
+                <td>{{ veille_info.description }}</td>
+                <td>{{ veille_info.lien }}</td>
+                <td>{{ veille_info.note }}</td>
+                <td>
+                    <a href="{{ path('veille_info_show', {'id': veille_info.id}) }}">show</a>
+                    <a href="{{ path('veille_info_edit', {'id': veille_info.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+
+    <a href="{{ path('veille_info_new') }}">Create new</a>
 {% endblock %}
