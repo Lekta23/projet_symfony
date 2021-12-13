@@ -20,7 +20,7 @@ class ContactController extends AbstractController
     {
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
+        if($form->isSubmitted()) {
             $contactFormData = $form->getData();
             
             $message = (new Email())
@@ -28,7 +28,7 @@ class ContactController extends AbstractController
                 ->to('ton@gmail.com')
                 ->subject('vous avez reçu unn email')
                 ->text('Sender : '.$contactFormData['email'].\PHP_EOL.
-                    $contactFormData['Message'],
+                    $contactFormData['message'],
                     'text/plain');
             $mailer->send($message);
             $this->addFlash('success', 'Vore message a été envoyé');
