@@ -4,23 +4,27 @@
 
 {% block body %}
  <h1 class="">Veille Informatique index</h1>
- <div class="container">
-    {% for veille_info in veille_infos %}
-    <div class="col-4 border mt-5 mb-5">
-        <h4 class="text-center">{{ veille_info.titre }}</h4>
-        <p class="text-center">{{ veille_info.description }}</p>
-        <p>Lien: <a class="text-center" href="{{ veille_info.lien }}">{{ veille_info.lien }}</a></p>
-        <div class="justify-content-around m-2">
-            <button type="button" class="btn btn-danger">Je n'aime pas</button>
-            <p class="bg-dark">{{ veille_info.note }}</p>
-            <button type="button" class="btn btn-success">J'aime</button>
-        </div>
-    </div>
-    {% else %}
-        
-    <div>
-        <h2 >Pas d'articles, que c'est dommage !</h2>
-    </div>
-    {% endfor %}
+ <div style="display: flex; flex-wrap: wrap;">
+            {% for veille_info in veille_infos %}
+                <div style="width: 18rem; background: #222;
+                            border: 1px solid #dd2476;
+                            color: rgba(250, 250, 250, 0.8); margin: 2rem">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ veille_info.titre }}</h5>
+                        <hr/>
+                        <p class="card-text">{{ veille_info.description }}</p>
+                        <a href="{{ veille_info.lien }}" class="mr-2" style=""><i class="fas fa-link"></i> Lien</a>
+                        <div style="background: grey; display: flex; align-items: center; justify-content: center">
+                            <a href="" style="padding: 4px; font-size: 28px; text-decoration: none; color: black;">-</a>
+                            <p style="margin: 0 10px">{{ veille_info.note }}</p>
+                            <a href="" style="padding: 4px; font-size: 28px; text-decoration: none; color: black;">+</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+            <div>
+                <h2 >Pas d'articles, que c'est dommage !</h2>
+            </div>
+            {% endfor %}
 </div>
 {% endblock %}
