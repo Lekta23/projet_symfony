@@ -31,6 +31,7 @@ class VeilleInfoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $veilleInfo->setAuteur($this->getUser());
+            $veilleInfo->setNote(0);
             $entityManager->persist($veilleInfo);
             $entityManager->flush();
 
