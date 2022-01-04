@@ -1,41 +1,26 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}VeilleInfo index{% endblock %}
+{% block title %}Veille Informatique{% endblock %}
 
 {% block body %}
-    <h1>VeilleInfo index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Description</th>
-                <th>Lien</th>
-                <th>Note</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for veille_info in veille_infos %}
-            <tr>
-                <td>{{ veille_info.id }}</td>
-                <td>{{ veille_info.titre }}</td>
-                <td>{{ veille_info.description }}</td>
-                <td>{{ veille_info.lien }}</td>
-                <td>{{ veille_info.note }}</td>
-                <td>
-                    <a href="{{ path('veille_info_show', {'id': veille_info.id}) }}">show</a>
-                    <a href="{{ path('veille_info_edit', {'id': veille_info.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('veille_info_new') }}">Create new</a>
+ <h1 class="">Veille Informatique index</h1>
+ <div class="container">
+    {% for veille_info in veille_infos %}
+    <div class="col-4 border mt-5 mb-5">
+        <h4 class="text-center">{{ veille_info.titre }}</h4>
+        <p class="text-center">{{ veille_info.description }}</p>
+        <p>Lien: <a class="text-center" href="{{ veille_info.lien }}">{{ veille_info.lien }}</a></p>
+        <div class="justify-content-around m-2">
+            <button type="button" class="btn btn-danger">Je n'aime pas</button>
+            <p class="bg-dark">{{ veille_info.note }}</p>
+            <button type="button" class="btn btn-success">J'aime</button>
+        </div>
+    </div>
+    {% else %}
+        
+    <div>
+        <h2 >Pas d'articles, que c'est dommage !</h2>
+    </div>
+    {% endfor %}
+</div>
 {% endblock %}
