@@ -16,9 +16,9 @@
                         <p class="card-text">{{ veille_info.description }}</p>
                         <a href="{{ veille_info.lien }}" class="mr-2" style=""><i class="fas fa-link"></i> Lien</a>
                         <div style="background: grey; display: flex; align-items: center; justify-content: center">
-                            <a href="" style="padding: 4px; font-size: 28px; text-decoration: none; color: black;">-</a>
+                            <a href="{{ path('veille_vote', {'id': veille_info.id,'operation' : '-'})  }}" style="padding: 4px; font-size: 28px; text-decoration: none; color: black;">-</a>
                             <p style="margin: 0 10px">{{ veille_info.note }}</p>
-                            <a href="" style="padding: 4px; font-size: 28px; text-decoration: none; color: black;">+</a>
+                            <a href="{{ path('veille_vote', {'id': veille_info.id,'operation' : '+'})  }}" style="padding: 4px; font-size: 28px; text-decoration: none; color: black;">+</a>
                         </div>
                     </div>
                 </div>
@@ -32,3 +32,4 @@
     <a href="{{ path('veille_info_new') }}" style="text-decoration: none;color: white; padding: 50px 400px">Ajouter un article</a>
 </div>
 {% endblock %}
+                   

@@ -67,10 +67,10 @@ class AppCustomAuthenticator extends AbstractFormLoginAuthenticator implements P
             throw new InvalidCsrfTokenException();
         }
 
-        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['username' => $credentials['username']]);
 
         if (!$user) {
-            throw new UsernameNotFoundException('Email could not be found.');
+            throw new UsernameNotFoundException('Username could not be found.');
         }
 
         return $user;
@@ -104,4 +104,6 @@ class AppCustomAuthenticator extends AbstractFormLoginAuthenticator implements P
     {
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
+
+
 }
