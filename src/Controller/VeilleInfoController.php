@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\VeilleInfo;
+use App\Entity\Voter;
 use App\Form\VeilleInfo1Type;
 use App\Repository\VeilleInfoRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -45,7 +46,7 @@ class VeilleInfoController extends AbstractController
         ]);
     }
 
-    public function addUser(user $user): self
+    public function addUser(Voter $user): self
     {
         if (!$this->user->contains($user)) {
             $this->user[] = $user;
@@ -59,9 +60,7 @@ class VeilleInfoController extends AbstractController
     public function vote($id, VeilleInfoRepository $repo,$operation, EntityManagerInterface $entityManager): Response
     {
         $veilleInfo = $repo->find($id);
-        if($veilleInfo->getUser()->contains($this->getUser())){
-            return $this->redirectToRoute('veille_info_index', [], Response::HTTP_SEE_OTHER);
-        } else {
+
             $note = $veilleInfo->getNote();
             if($operation == "-"){
                 $note--;
@@ -69,10 +68,9 @@ class VeilleInfoController extends AbstractController
                 $note++;
             }
             $veilleInfo->setNote($note);
-            $veilleInfo->addUser($this->getUser());
             $entityManager->persist($veilleInfo);
             $entityManager->flush();
+            return $this->redirectToRoute('veille_info_index', [], Response::HTTP_SEE_OTHER);
         }
-        return $this->redirectToRoute('veille_info_index', [], Response::HTTP_SEE_OTHER);
+    
     }
-}
